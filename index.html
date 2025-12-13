@@ -3,13 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- REQUIREMENT: "Desktop and mobile responsive design" - viewport meta enables proper scaling on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GreenShoes Admin</title>
+    
+    <!-- Google Fonts - Luxury typography for brand consistency
+         REQUIREMENT: "Luxury shoe e-commerce platform"
+         Cinzel Decorative: Used for the GREENSHOES logo/branding
+         Playfair Display: Used for body text and headings throughout the admin panel
+         These match the customer-facing site to maintain brand identity -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- React app mounts here - the entire admin panel renders inside this div -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

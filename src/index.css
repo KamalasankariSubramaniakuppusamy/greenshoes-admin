@@ -1,19 +1,34 @@
+/* index.css
+   Developer: Greenshoes Team
+   Global styles for the GreenShoes Admin Panel
+   
+   REQUIREMENTS SATISFIED:
+   - "Luxury shoe e-commerce platform" → Premium typography and color scheme
+   - "Desktop and mobile responsive design" → Tailwind utilities enable responsive layouts
+   - Brand consistency between admin panel and customer-facing site
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Brand colors - matches the main GreenShoes site for consistency
+   Primary is our signature dark green/black, accent is the gold for luxury feel */
 :root {
   --color-primary: #1a1a1a;
   --color-accent: #c9a227;
 }
 
+/* Base typography - Playfair Display gives that high-end editorial look
+   REQUIREMENT: "luxury shoe e-commerce platform" - typography is part of the premium brand identity */
 body {
   font-family: 'Playfair Display', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - small detail but makes the admin panel feel more polished
+   Keeps the luxury feel even in scrollable areas like product tables and modals */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -32,7 +47,8 @@ body {
   background: #a1a1a1;
 }
 
-/* Select dropdown arrow */
+/* Select dropdown arrow - custom styling so dropdowns look consistent accross the app
+   Default browser selects look pretty ugly, this makes them match our design */
 select {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 0.5rem center;

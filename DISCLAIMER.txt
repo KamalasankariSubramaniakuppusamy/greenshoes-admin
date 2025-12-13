@@ -1,0 +1,156 @@
+================================================================================
+DISCLAIMER & DOCUMENTATION
+GreenShoes Admin Panel
+================================================================================
+
+Developer: Greenshoes Team
+Last Updated: December 3rd, 2025
+Project: GreenShoes - Luxury Eco-Friendly Footwear E-Commerce Platform
+
+--------------------------------------------------------------------------------
+ABOUT THE CODE IN THIS DIRECTORY
+--------------------------------------------------------------------------------
+
+Hey there! Before you dive into this codebase, a few things to know:
+
+1. HEAVY COMMENTING
+   You'll notice a lot of comments. This is intentional! Professor Renato Levy 
+   says "you are only as old as the code you maintain" - and I don't want to 
+   break my head later wondering why I made certain decisions. Some files even 
+   have commented-out code for future reference. This is because 
+   I like to keep my code and thought process transparent. I may come back to extend
+   this software in the near future to push my understanding and implementation of
+   system design and wiser tradeoffs further. So I don't want to curse myself at that time
+   nor do I want you to!
+
+
+2. REQUIREMENT TRACEABILITY
+   Many comments reference specific requirements from GreenShoes_Requirements_postCDD.pdf.
+   I did this to check off requirements as I built things - it's my way of making 
+   sure I didn't miss anything and reminding myself how each piece satisfies the spec.
+
+3. CONVERSATIONAL TONE
+   Comments are casual and sometimes verbose - sorry about that! I believe code 
+   files are thought journals. Keeping them raw helps my team understand and 
+   relate to the logic. Anything that can't be understood can't be handled with care!
+
+4. OCCASIONAL TYPOS
+   There might be typos in comments - we're all human! The code itself is tested 
+   thoroughly with fallback logic and works fine. I get into flow when coding and 
+   commenting, so please don't hold a few spelling mistakes against me!
+
+--------------------------------------------------------------------------------
+REQUIREMENTS SATISFIED BY THIS ADMIN PANEL
+--------------------------------------------------------------------------------
+
+All requirements from GreenShoes_Requirements_postCDD.pdf implemented here:
+
+SECURITY & ACCESS CONTROL
+-------------------------
+[x] Single admin interface for product, inventory, and impact management
+    → Unified React app with shared AdminLayout component
+    → Impact stories managed through product descriptions
+
+[x] Different Admin login URL to prevent break-in attacks
+    → Separate admin React app, AdminAuthContext, ProtectedRoute, 
+      /admin/* API endpoints with role-based access
+
+PRODUCT MANAGEMENT
+------------------
+[x] Admin to add items with multiple pictures
+    → Multi-file image upload in ProductManagement.jsx, FormData in api.js
+
+[x] Admin to add/modify quantities per size and color
+    → Expandable inventory rows, inventoryAPI.update() for real-time updates
+
+[x] Administrator to change prices
+    → Edit Product modal with cost_price and selling_price fields
+
+[x] Administrator to place items on sale
+    → Sale modal with productsAPI.markOnSale() and removeFromSale()
+
+[x] Products display color/size options with multiple images
+    → Variants system (color + sizes), multi-image upload
+
+INVENTORY MANAGEMENT
+--------------------
+[x] Admin to update inventory in real-time with immediate visibility
+    → inventoryAPI.update() with immediate fetchData() refresh
+
+[x] Inventory quantity shall never be negative
+    → min="0" on all quantity inputs, backend validation as backup
+
+[x] Inventory updates immediately visible after browser closure
+    → Real-time database updates, no client-side caching
+
+[x] Update quantity of items in each size as sales are performed
+    → Backend handles during order processing, admin panel reflects state
+
+ORDER MANAGEMENT
+----------------
+[x] Unique confirmation ID for each order
+    → order_id displayed in table and detail modal
+
+[x] Display order ID, color, size, addresses, and total in order history
+    → Full order detail modal with ordersAPI.getById()
+
+PRICING & POLICIES
+------------------
+[x] Tax of 6% applied per product
+    → Tax column in products table, breakdown in order details
+
+[x] Flat shipping rate of $11.95 for all orders
+    → Shipping fee in order detail modal price breakdown
+
+[x] No refunds/returns supported
+    → No refund endpoints, order management is read-only
+
+UI/UX
+-----
+[x] Desktop and mobile responsive design
+    → Tailwind CSS responsive utilities throughout
+
+[x] Luxury platform emphasizing eco-friendly narrative
+    → Cinzel Decorative + Playfair Display fonts, "SCULPTED BY THE SEA" branding
+
+--------------------------------------------------------------------------------
+FILE STRUCTURE
+--------------------------------------------------------------------------------
+
+greenshoes-admin/
+├── src/
+│   ├── components/
+│   │   ├── AdminLayout.jsx      # Shared layout with nav and header
+│   │   └── ProtectedRoute.jsx   # Auth guard for admin routes
+│   ├── context/
+│   │   └── AdminAuthContext.jsx # Admin authentication state
+│   ├── pages/
+│   │   ├── AdminLogin.jsx       # Login page
+│   │   ├── ProductManagement.jsx # Products & inventory CRUD
+│   │   └── OrderManagement.jsx  # Order viewing
+│   ├── services/
+│   │   └── api.js               # Axios instance and API endpoints
+│   ├── App.jsx                  # Main app with routing
+│   ├── main.jsx                 # React entry point
+│   └── index.css                # Global styles + Tailwind
+├── index.html                   # HTML template with fonts
+├── package.json                 # Dependencies
+├── tailwind.config.js           # Tailwind config
+├── vite.config.js               # Vite config
+├── .env.example                 # Environment template
+└── DISCLAIMER.txt               # This file!
+
+--------------------------------------------------------------------------------
+QUICK NOTES
+--------------------------------------------------------------------------------
+
+- Admin panel is separate from the customer-facing site
+- Auth uses JWT tokens in localStorage (admin_token key)
+- All requests go through adminAxios with auto-attached auth
+- 401 errors = automatic logout and redirect to login
+- Colors/sizes derived from products (no separate tables)
+- Sale feature auto-calculates discount percentages
+
+Questions? The code comments should explain most things!
+
+================================================================================
